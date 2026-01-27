@@ -1,0 +1,316 @@
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { 
+  CalendarX2, 
+  MessageSquareOff, 
+  Clock, 
+  ShieldCheck, 
+  Sparkles, 
+  Banknote,
+  CheckCircle2,
+  ChevronRight,
+  Menu,
+  X
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { LeadForm } from "@/components/LeadForm";
+import { FeatureCard } from "@/components/FeatureCard";
+
+// Using a placeholder from Unsplash for the hero mockup
+// Concept: Professional dashboard on a device with pastries in background
+// Photo by Eiliv Aceron on Unsplash
+const HERO_IMAGE_URL = "https://images.unsplash.com/photo-1556910103-1c02745a30bf?auto=format&fit=crop&q=80&w=2000";
+
+export default function LandingPage() {
+  const formRef = useRef<HTMLDivElement>(null);
+
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <div className="min-h-screen font-sans bg-background selection:bg-primary/20">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="font-display font-bold text-2xl text-primary tracking-tight">
+            Doceria<span className="text-gray-800">Organizada</span>
+          </div>
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#features" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Funcionalidades</a>
+            <a href="#pricing" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Planos</a>
+            <a href="#faq" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Dúvidas</a>
+            <Button size="sm" onClick={scrollToForm}>Começar Grátis</Button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+        <div className="absolute inset-0 pattern-grid opacity-40 pointer-events-none" />
+        
+        {/* Soft Blobs for Background Atmosphere */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            {/* Hero Copy */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 border border-orange-200 text-orange-800 text-xs font-semibold mb-6">
+                <Sparkles className="w-3 h-3" />
+                Novidade para Confeiteiras
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 leading-[1.1] mb-6">
+                Pare de perder dinheiro com pedidos errados no <span className="text-primary">WhatsApp</span>
+              </h1>
+              <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-lg leading-relaxed">
+                O sistema que organiza sua agenda e diz <span className="font-semibold text-gray-800">"não"</span> automaticamente para dias lotados, devolvendo suas noites de sono.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 mb-10">
+                <Button size="lg" variant="cta" onClick={scrollToForm} className="text-base group">
+                  Começar Grátis - Sem Cartão
+                  <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <div className="flex items-center gap-2 text-sm text-gray-500 px-4 py-3">
+                  <ShieldCheck className="w-4 h-4 text-green-500" />
+                  Cancelamento a qualquer momento
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="flex -space-x-3">
+                  {[1,2,3,4].map(i => (
+                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-gray-200 overflow-hidden">
+                      <img src={`https://i.pravatar.cc/100?img=${i + 20}`} alt="User" />
+                    </div>
+                  ))}
+                </div>
+                <div className="text-sm font-medium text-gray-700">
+                  <span className="font-bold text-primary">+ de 200 confeiteiras</span><br/>
+                  recuperaram o controle da agenda
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Hero Image/Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                <img 
+                  src={HERO_IMAGE_URL} 
+                  alt="Painel do sistema mostrando pedidos organizados" 
+                  className="w-full object-cover aspect-[4/3]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-8">
+                  <div className="bg-white/90 backdrop-blur p-4 rounded-xl shadow-lg w-full">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-bold text-gray-800">Próximo Sábado</span>
+                      <span className="text-xs font-semibold px-2 py-1 bg-red-100 text-red-600 rounded-full">Lotado</span>
+                    </div>
+                    <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                      <div className="bg-red-500 w-full h-full" />
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2">Novos pedidos bloqueados automaticamente.</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Problem Section: Muro das Lamentações */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
+              Cansada da bagunça no WhatsApp?
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Veja a diferença entre tentar gerenciar pedidos no chat e ter tudo centralizado em um só lugar.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <FeatureCard 
+              icon={<MessageSquareOff className="w-6 h-6" />}
+              title="O pedido esquecido"
+              description="Aquela mensagem que ficou lá embaixo e você só viu no dia da entrega. Constrangedor e caro."
+              delay={0.1}
+            />
+            <FeatureCard 
+              icon={<Banknote className="w-6 h-6" />}
+              title="O calote do sinal"
+              description="Bloqueou a data, produziu e o cliente sumiu sem pagar os 50%. Prejuízo total de tempo e insumos."
+              delay={0.2}
+            />
+            <FeatureCard 
+              icon={<CalendarX2 className="w-6 h-6" />}
+              title="Aceitou sem poder"
+              description="Na correria, disse 'sim' para um pedido num dia que já estava humanamente impossível de entregar."
+              delay={0.3}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Solution Section: A Chave da Liberdade */}
+      <section className="py-20 bg-secondary/30 relative overflow-hidden" id="features">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6">
+                Ele diz "NÃO" por você
+              </h2>
+              <p className="text-gray-600 text-lg mb-8">
+                O sistema é o gerente "chato" que você precisa. Ele tem autoridade para bloquear datas e exigir pagamento, sem você precisar se desgastar emocionalmente com o cliente.
+              </p>
+              
+              <ul className="space-y-4">
+                {[
+                  "Cliente escolhe o produto e data disponível",
+                  "Vê o resumo e valor total na hora",
+                  "Faz o pagamento para confirmar (Pix)",
+                  "Recebe confirmação automática no WhatsApp",
+                  "Você só recebe o pedido PRONTO e PAGO"
+                ].map((item, i) => (
+                  <motion.li 
+                    key={i}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 * i }}
+                    className="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-white/50"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                      <CheckCircle2 className="w-4 h-4 text-green-600" />
+                    </div>
+                    <span className="text-gray-700 font-medium">{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+            
+            <div className="relative" ref={formRef}>
+              <LeadForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing / Business Model */}
+      <section className="py-20 bg-white" id="pricing">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
+              Quanto custa sua paz?
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Comece pequeno e cresça com a gente. Transparência total.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Free Tier */}
+            <div className="p-8 rounded-3xl border border-gray-100 bg-gray-50/50 hover:border-gray-200 transition-colors">
+              <h3 className="text-xl font-bold font-display text-gray-900">Iniciante</h3>
+              <div className="mt-4 mb-6">
+                <span className="text-4xl font-bold text-gray-900">Grátis</span>
+                <span className="text-gray-500">/mês</span>
+              </div>
+              <p className="text-gray-600 mb-6">Ideal para conhecer o sistema e organizar os primeiros pedidos.</p>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Até 15 pedidos/mês</li>
+                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Cardápio Digital Básico</li>
+                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Link para Bio</li>
+              </ul>
+              <Button variant="outline" className="w-full" onClick={scrollToForm}>Começar Grátis</Button>
+            </div>
+
+            {/* Pro Tier */}
+            <div className="p-8 rounded-3xl border-2 border-primary/20 bg-white shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-xl">MAIS POPULAR</div>
+              <h3 className="text-xl font-bold font-display text-primary">Profissional</h3>
+              <div className="mt-4 mb-6">
+                <span className="text-4xl font-bold text-gray-900">R$ 49</span>
+                <span className="text-gray-500">/mês</span>
+              </div>
+              <p className="text-gray-600 mb-6">Para quem não pode perder nem um minuto com burocracia.</p>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> <strong>Pedidos Ilimitados</strong></li>
+                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Gestão Automática de Estoque</li>
+                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Relatórios de Vendas</li>
+                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Suporte Prioritário</li>
+              </ul>
+              <Button variant="default" className="w-full" onClick={scrollToForm}>Testar 7 Dias Grátis</Button>
+            </div>
+          </div>
+          
+          <div className="text-center mt-12 bg-orange-50 p-6 rounded-2xl max-w-2xl mx-auto border border-orange-100">
+            <p className="font-semibold text-orange-900 flex items-center justify-center gap-2">
+              <Banknote className="w-5 h-5" />
+              Objeção zero: Não cobramos taxas sobre suas vendas. O lucro é 100% seu.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white" id="faq">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-display font-bold text-gray-900 mb-12 text-center">
+            Dúvidas Frequentes
+          </h2>
+          
+          <div className="space-y-6">
+            {[
+              { q: "Preciso baixar algum aplicativo?", a: "Não! O sistema funciona direto no navegador do seu celular ou computador. É só acessar o link." },
+              { q: "Funciona em celular antigo?", a: "Sim, o sistema é super leve e foi feito pensando em quem usa o celular o dia todo na cozinha." },
+              { q: "Como recebo meu dinheiro?", a: "O pagamento vai direto para o seu Pix ou conta bancária. Nós não seguramos seu dinheiro." },
+              { q: "E se eu não gostar?", a: "Você pode cancelar a qualquer momento. Sem multas, sem letras miúdas." }
+            ].map((item, i) => (
+              <div key={i} className="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:bg-gray-100 transition-colors">
+                <h3 className="font-bold text-gray-900 mb-2">{item.q}</h3>
+                <p className="text-gray-600">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-300 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="font-display font-bold text-2xl text-white">
+            Doceria<span className="text-primary">Organizada</span>
+          </div>
+          <p className="text-sm text-gray-500">
+            © {new Date().getFullYear()} Feito com açúcar e tecnologia.
+          </p>
+          <div className="flex gap-6 text-sm font-medium">
+            <a href="#" className="hover:text-white transition-colors">Termos</a>
+            <a href="#" className="hover:text-white transition-colors">Privacidade</a>
+            <a href="#" className="hover:text-white transition-colors">Contato</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
