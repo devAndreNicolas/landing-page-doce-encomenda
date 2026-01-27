@@ -22,10 +22,13 @@ import { FeatureCard } from "@/components/FeatureCard";
 const HERO_IMAGE_URL = "https://images.unsplash.com/photo-1556910103-1c02745a30bf?auto=format&fit=crop&q=80&w=2000";
 
 export default function LandingPage() {
-  const formRef = useRef<HTMLDivElement>(null);
+  const goToApp = () => {
+    window.location.href = APP_URL;
+  };
 
-  const scrollToForm = () => {
-    formRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToPricing = () => {
+    const pricingSection = document.getElementById('pricing');
+    pricingSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -40,7 +43,7 @@ export default function LandingPage() {
             <a href="#features" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Funcionalidades</a>
             <a href="#pricing" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Planos</a>
             <a href="#faq" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Dúvidas</a>
-            <Button size="sm" onClick={scrollToForm}>Começar Grátis</Button>
+            <Button size="sm" onClick={goToApp}>Começar Grátis</Button>
           </div>
         </div>
       </nav>
@@ -74,14 +77,13 @@ export default function LandingPage() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-10">
-                <Button size="lg" variant="cta" onClick={scrollToForm} className="text-base group">
+                <Button size="lg" variant="cta" onClick={goToApp} className="text-base group">
                   Começar Grátis - Sem Cartão
                   <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                <div className="flex items-center gap-2 text-sm text-gray-500 px-4 py-3">
-                  <ShieldCheck className="w-4 h-4 text-green-500" />
-                  Cancelamento a qualquer momento
-                </div>
+                <Button size="lg" variant="outline" onClick={scrollToPricing} className="text-base">
+                  Ver Planos
+                </Button>
               </div>
 
               <div className="flex items-center gap-4">
@@ -94,34 +96,53 @@ export default function LandingPage() {
                 </div>
                 <div className="text-sm font-medium text-gray-700">
                   <span className="font-bold text-primary">+ de 200 confeiteiras</span><br/>
-                  recuperaram o controle da agenda
+                  já automatizaram suas vendas
                 </div>
               </div>
             </motion.div>
 
-            {/* Hero Image/Card */}
+            {/* Hero Visual */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-white">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/10" />
                 <img 
-                  src={HERO_IMAGE_URL} 
-                  alt="Painel do sistema mostrando pedidos organizados" 
-                  className="w-full object-cover aspect-[4/3]"
+                  src="/images/hero-bg.jpg" 
+                  alt="Cozinha profissional organizada" 
+                  className="w-full object-cover aspect-[4/3] opacity-90"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-8">
-                  <div className="bg-white/90 backdrop-blur p-4 rounded-xl shadow-lg w-full">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-bold text-gray-800">Próximo Sábado</span>
-                      <span className="text-xs font-semibold px-2 py-1 bg-red-100 text-red-600 rounded-full">Lotado</span>
+                {/* Floating App UI Element */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5">
+                  <div className="bg-white/95 backdrop-blur shadow-2xl rounded-2xl p-6 border border-white transform -rotate-1">
+                    <div className="flex items-center justify-between mb-4 pb-4 border-b">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                          <Clock className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Próxima entrega</p>
+                          <p className="text-sm font-bold text-gray-900">Sábado, 14:00h</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs text-gray-500">Status</p>
+                        <span className="text-[10px] font-bold px-2 py-0.5 bg-green-100 text-green-700 rounded-full">CONFIRMADO</span>
+                      </div>
                     </div>
-                    <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-                      <div className="bg-red-500 w-full h-full" />
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-gray-600">Bolo de Cenoura G</span>
+                        <span className="font-bold">R$ 85,00</span>
+                      </div>
+                      <div className="flex justify-between items-center text-xs text-gray-500">
+                        <span>Sinal (50%)</span>
+                        <span className="text-green-600 font-semibold">PAGO VIA PIX</span>
+                      </div>
                     </div>
-                    <p className="text-xs text-gray-500 mt-2">Novos pedidos bloqueados automaticamente.</p>
                   </div>
                 </div>
               </div>
@@ -139,7 +160,7 @@ export default function LandingPage() {
               Cansada da bagunça no WhatsApp?
             </h2>
             <p className="text-gray-600 text-lg">
-              Veja a diferença entre tentar gerenciar pedidos no chat e ter tudo centralizado em um só lugar.
+              O DoceriaOrganizada centraliza tudo para que você foque no que ama: produzir doces incríveis.
             </p>
           </div>
 
@@ -208,8 +229,19 @@ export default function LandingPage() {
               </ul>
             </motion.div>
             
-            <div className="relative" ref={formRef}>
-              <LeadForm />
+            <div className="relative">
+              <div className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/50 text-center">
+                <h3 className="text-2xl font-bold mb-4 font-display text-gray-800">Pronta para ter paz?</h3>
+                <p className="text-gray-600 mb-8">
+                  Junte-se a centenas de confeiteiras que recuperaram o controle da sua rotina.
+                </p>
+                <Button size="lg" className="w-full h-14 text-lg font-bold" onClick={goToApp}>
+                  Criar Meu Cardápio Agora
+                </Button>
+                <p className="text-xs text-gray-400 mt-4">
+                  7 dias de teste no plano Profissional. Cancele quando quiser.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -243,7 +275,7 @@ export default function LandingPage() {
                   <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Link para Bio</li>
                 </ul>
               </div>
-              <Button variant="outline" className="w-full mt-auto" onClick={scrollToForm}>Começar Grátis</Button>
+              <Button variant="outline" className="w-full mt-auto" onClick={goToApp}>Começar Grátis</Button>
             </div>
 
             {/* Pro Tier */}
@@ -263,7 +295,7 @@ export default function LandingPage() {
                   <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Consultoria de Configuração</li>
                 </ul>
               </div>
-              <Button variant="default" className="w-full mt-auto font-bold" onClick={scrollToForm}>Falar com Consultor e Ativar Pro</Button>
+              <Button variant="default" className="w-full mt-auto font-bold" onClick={() => window.open('https://wa.me/5599999999999?text=Quero%20ativar%20o%20plano%20Profissional', '_blank')}>Falar com Consultor e Ativar Pro</Button>
             </div>
           </div>
           
