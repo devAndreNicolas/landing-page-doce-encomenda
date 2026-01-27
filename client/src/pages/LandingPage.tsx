@@ -75,7 +75,7 @@ export default function LandingPage() {
                 Transforme seu WhatsApp em uma <span className="text-primary">confeitaria automática</span>
               </h1>
               <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-lg leading-relaxed">
-                Diga adeus àquela culpa de falar que não tem vaga. O <span className="font-bold text-gray-800">DoceriaOrganizada</span> diz "não" com profissionalismo por você.
+                Diga adeus àquela culpa de falar que não tem vaga. O <span className="font-bold text-gray-800">Doce Encomenda</span> diz "não" com profissionalismo por você.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-10">
@@ -162,7 +162,7 @@ export default function LandingPage() {
               Cansada da bagunça no WhatsApp?
             </h2>
             <p className="text-gray-600 text-lg">
-              O DoceriaOrganizada centraliza tudo para que você foque no que ama: produzir doces incríveis.
+              O Doce Encomenda centraliza tudo para que você foque no que ama: produzir doces incríveis.
             </p>
           </div>
 
@@ -337,7 +337,7 @@ export default function LandingPage() {
       <footer className="bg-gray-900 text-gray-300 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="font-display font-bold text-2xl text-white">
-            Doceria<span className="text-primary">Organizada</span>
+            Doce <span className="text-primary">Encomenda</span>
           </div>
           <p className="text-sm text-gray-500">
             © {new Date().getFullYear()} Feito com açúcar e tecnologia.
