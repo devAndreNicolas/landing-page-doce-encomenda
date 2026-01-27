@@ -67,10 +67,10 @@ export default function LandingPage() {
                 Novidade para Confeiteiras
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 leading-[1.1] mb-6">
-                Pare de perder dinheiro com pedidos errados no <span className="text-primary">WhatsApp</span>
+                Transforme seu WhatsApp em uma <span className="text-primary">confeitaria automática</span>
               </h1>
               <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-lg leading-relaxed">
-                O sistema que organiza sua agenda e diz <span className="font-semibold text-gray-800">"não"</span> automaticamente para dias lotados, devolvendo suas noites de sono.
+                Diga adeus àquela culpa de falar que não tem vaga. O <span className="font-bold text-gray-800">DoceriaOrganizada</span> diz "não" com profissionalismo por você.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-10">
@@ -229,37 +229,41 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Free Tier */}
-            <div className="p-8 rounded-3xl border border-gray-100 bg-gray-50/50 hover:border-gray-200 transition-colors">
-              <h3 className="text-xl font-bold font-display text-gray-900">Iniciante</h3>
-              <div className="mt-4 mb-6">
-                <span className="text-4xl font-bold text-gray-900">Grátis</span>
-                <span className="text-gray-500">/mês</span>
+            <div className="flex flex-col p-8 rounded-3xl border border-gray-100 bg-gray-50/50 hover:border-gray-200 transition-colors">
+              <div className="flex-1">
+                <h3 className="text-xl font-bold font-display text-gray-900">Iniciante</h3>
+                <div className="mt-4 mb-6">
+                  <span className="text-4xl font-bold text-gray-900">Grátis</span>
+                  <span className="text-gray-500">/mês</span>
+                </div>
+                <p className="text-gray-600 mb-6">Ideal para conhecer o sistema e organizar os primeiros pedidos.</p>
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Até 15 pedidos/mês</li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Cardápio Digital (com marca d'água)</li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Link para Bio</li>
+                </ul>
               </div>
-              <p className="text-gray-600 mb-6">Ideal para conhecer o sistema e organizar os primeiros pedidos.</p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Até 15 pedidos/mês</li>
-                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Cardápio Digital Básico</li>
-                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Link para Bio</li>
-              </ul>
-              <Button variant="outline" className="w-full" onClick={scrollToForm}>Começar Grátis</Button>
+              <Button variant="outline" className="w-full mt-auto" onClick={scrollToForm}>Começar Grátis</Button>
             </div>
 
             {/* Pro Tier */}
-            <div className="p-8 rounded-3xl border-2 border-primary/20 bg-white shadow-xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-xl">MAIS POPULAR</div>
-              <h3 className="text-xl font-bold font-display text-primary">Profissional</h3>
-              <div className="mt-4 mb-6">
-                <span className="text-4xl font-bold text-gray-900">R$ 49</span>
-                <span className="text-gray-500">/mês</span>
+            <div className="flex flex-col p-8 rounded-3xl border-2 border-primary/20 bg-white shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">Onboarding VIP</div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold font-display text-primary">Profissional</h3>
+                <div className="mt-4 mb-6">
+                  <span className="text-4xl font-bold text-gray-900">R$ 49</span>
+                  <span className="text-gray-500">/mês</span>
+                </div>
+                <p className="text-gray-600 mb-6">Para quem não pode perder nem um minuto com burocracia.</p>
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> <strong>Pedidos Ilimitados</strong></li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Ativação Prioritária via WhatsApp</li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Relatórios de Vendas</li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Consultoria de Configuração</li>
+                </ul>
               </div>
-              <p className="text-gray-600 mb-6">Para quem não pode perder nem um minuto com burocracia.</p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> <strong>Pedidos Ilimitados</strong></li>
-                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Gestão Automática de Estoque</li>
-                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Relatórios de Vendas</li>
-                <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Suporte Prioritário</li>
-              </ul>
-              <Button variant="default" className="w-full" onClick={scrollToForm}>Testar 7 Dias Grátis</Button>
+              <Button variant="default" className="w-full mt-auto font-bold" onClick={scrollToForm}>Falar com Consultor e Ativar Pro</Button>
             </div>
           </div>
           
