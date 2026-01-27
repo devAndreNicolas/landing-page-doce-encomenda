@@ -21,6 +21,8 @@ import { FeatureCard } from "@/components/FeatureCard";
 // Photo by Eiliv Aceron on Unsplash
 const HERO_IMAGE_URL = "https://images.unsplash.com/photo-1556910103-1c02745a30bf?auto=format&fit=crop&q=80&w=2000";
 
+const APP_URL = (import.meta.env.VITE_APP_URL as string | undefined) || "/";
+
 export default function LandingPage() {
   const goToApp = () => {
     window.location.href = APP_URL;

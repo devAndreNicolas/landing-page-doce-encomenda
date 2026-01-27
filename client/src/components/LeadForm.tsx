@@ -1,43 +1,63 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertLeadSchema, type InsertLead } from "@shared/schema";
-import { useCreateLead } from "@/hooks/use-leads";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
+const leadSchema = z.object({
+  name: z.string().optional(),
+  email: z.string().email("Email inválido"),
+});
+
+type LeadFormValues = z.infer<typeof leadSchema>;
+
 export function LeadForm() {
   const { toast } = useToast();
-  const { mutate, isPending, isSuccess } = useCreateLead();
+  const [isPending, setIsPending] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   
-  const form = useForm<InsertLead>({
-    resolver: zodResolver(insertLeadSchema),
+  const form = useForm<LeadFormValues>({
+    resolver: zodResolver(leadSchema),
     defaultValues: {
       email: "",
       name: "",
     },
   });
 
-  const onSubmit = (data: InsertLead) => {
-    mutate(data, {
-      onSuccess: () => {
-        toast({
-          title: "Sucesso!",
-          description: "Você entrou na lista de espera. Avisaremos em breve!",
-          className: "bg-green-50 border-green-200 text-green-800",
-        });
-        form.reset();
-      },
-      onError: (error) => {
-        toast({
-          title: "Erro",
-          description: error.message,
-          variant: "destructive",
-        });
-      },
-    });
+  const onSubmit = async (data: LeadFormValues) => {
+    try {
+      setIsPending(true);
+
+      const phone = import.meta.env.VITE_WHATSAPP_PHONE as string | undefined;
+      if (!phone) {
+        throw new Error("VITE_WHATSAPP_PHONE não configurado");
+      }
+
+      const message = `Oi! Quero organizar meus pedidos. Meu nome é ${data.name || ""} e meu email é ${data.email}.`;
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+
+      setIsSuccess(true);
+      toast({
+        title: "Sucesso!",
+        description: "Abrimos o WhatsApp para você enviar sua mensagem.",
+        className: "bg-green-50 border-green-200 text-green-800",
+      });
+      form.reset();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Erro ao enviar";
+      toast({
+        title: "Erro",
+        description: message,
+        variant: "destructive",
+      });
+    } finally {
+      setIsPending(false);
+    }
   };
 
   if (isSuccess) {
@@ -56,7 +76,7 @@ export function LeadForm() {
         </p>
         <Button 
           variant="ghost" 
-          onClick={() => window.location.reload()} 
+          onClick={() => setIsSuccess(false)} 
           className="mt-4 text-green-700 hover:text-green-800 hover:bg-green-100"
         >
           Cadastrar outro email
