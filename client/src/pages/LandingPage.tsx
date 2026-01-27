@@ -39,7 +39,7 @@ export default function LandingPage() {
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="font-display font-bold text-2xl text-primary tracking-tight">
-            Doceria<span className="text-gray-800">Organizada</span>
+            Doce <span className="text-gray-800">Encomenda</span>
           </div>
           <div className="hidden md:flex items-center gap-8">
             <a href="#features" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Funcionalidades</a>
