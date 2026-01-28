@@ -369,7 +369,7 @@ const openWhatsapp = (message: string) => {
                   <span className="text-4xl font-bold text-gray-900">R$ 39</span>
                   <span className="text-gray-500">/mês</span>
                 </div>
-                <p className="text-gray-600 mb-6">Para a empresária que quer escalar e vender sem limites.</p>
+                <p className="text-gray-600 mb-6">Para a confeiteira que quer escalar e vender sem limites.</p>
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-center gap-2 text-sm text-gray-900 font-bold"><CheckCircle2 className="w-4 h-4 text-primary" /> Pedidos e Vendas Ilimitadas</li>
                   <li className="flex items-center gap-2 text-sm text-gray-700"><CheckCircle2 className="w-4 h-4 text-primary" /> Dashboard de Faturamento Real</li>
