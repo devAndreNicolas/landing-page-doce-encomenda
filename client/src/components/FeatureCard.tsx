@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface FeatureCardProps {
   icon: ReactNode;
@@ -11,14 +11,16 @@ interface FeatureCardProps {
 }
 
 export function FeatureCard({ icon, title, description, className, delay = 0 }: FeatureCardProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay, ease: "easeOut" }}
+      transition={{ duration: shouldReduceMotion ? 0 : 0.5, delay: shouldReduceMotion ? 0 : delay, ease: "easeOut" }}
       className={cn(
-        "group p-8 rounded-3xl bg-white border border-gray-100 shadow-lg hover:shadow-xl hover:border-primary/20 transition-all duration-300",
+        "group p-6 sm:p-8 rounded-3xl bg-white border border-gray-100 shadow-lg hover:shadow-xl hover:border-primary/20 transition-all duration-300",
         className
       )}
     >
